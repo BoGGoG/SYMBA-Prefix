@@ -31,4 +31,7 @@ The [SYMBA paper](https://arxiv.org/abs/2206.08901) uses the expressions directl
 I have developed a way of transforming them to prefix notation and also developed a hybrid prefix notation
 in order to get shorter sequences.
 
+# Results?
+The training of the models can be seen in the [models folder](https://github.com/BoGGoG/SYMBA-Prefix/tree/main/models).
+The evaluation is in the evaluations folder, [QED](https://github.com/BoGGoG/SYMBA-Prefix/tree/main/models/QED/Evaluation) and [QCD]().
 
