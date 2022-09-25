@@ -9,7 +9,9 @@ It's best explained with an example:
 The sympy expression
 ```a + b*c```
 is transformed to the list of strings
-```['add', 'a', 'mul', 'b', 'c']```
+```
+['add', 'a', 'mul', 'b', 'c']
+```
 which is the prefix notation as apposed to the infix notation above.
 This is equivalent to a depth first traversal of the tree
 ```mermaid
@@ -31,9 +33,13 @@ I have been working to extend the model to use prefix notation.
 # Hybrid Prefix Notation
 It turns out that prefix notation only "works" without parentheses if each operator has a fixed number of arguments.
 For example the multiplication of three elements, `a+b+c` would have to either be
-```+ a + b c```
+```
++ a + b c
+```
 or
-```+( a b c )```
+```
++( a b c )
+```
 I have described in [this blogpost](http://127.0.0.1:4000/machine/learning/feynman/physics/symba/2022/07/14/Introduction-Feynman-Amplitudes-Project.html)
 why.
 Of course one could add a separate multiplication and addition operator for each number of arguments,
