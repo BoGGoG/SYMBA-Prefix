@@ -279,11 +279,11 @@ if __name__== "__main__":
                     format = '%(asctime)s:%(levelname)s:%(name)s:%(message)s')
 
 
-    run_all_n_to_m_parallel(particles_list, 1, 2, folders, cpu_cores=cpu_cores)
+    # run_all_n_to_m_parallel(particles_list, 1, 2, folders, cpu_cores=cpu_cores)
     # run_all_n_to_m_parallel(particles_list, 2, 1, folders, cpu_cores=cpu_cores)
     # run_all_n_to_m_parallel(particles_list, 2, 2, folders, cpu_cores=cpu_cores)
     # run_all_n_to_m_parallel(particles_list, 3, 1, folders, cpu_cores=cpu_cores)
     # run_all_n_to_m_parallel(particles_list, 1, 3, folders, cpu_cores=cpu_cores)
     # run_all_n_to_m_parallel(particles_list, 3, 2, folders, cpu_cores=cpu_cores)
-    # run_all_n_to_m_parallel(particles_list, 2, 3, folders, cpu_cores=cpu_cores)
+    run_all_n_to_m_parallel(particles_list, 2, 3, folders, cpu_cores=cpu_cores)
     # run_all_n_to_m_parallel(particles_list, 3, 3, folders, cpu_cores=cpu_cores)
