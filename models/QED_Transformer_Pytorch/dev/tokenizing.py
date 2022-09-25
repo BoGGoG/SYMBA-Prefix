@@ -2,43 +2,10 @@ import sys
 import os
 from icecream import ic 
 import csv
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
 from icecream import ic
-import pandas as pd
 import csv
 from tokenizers import Tokenizer
-from tokenizers.models import BPE
 from collections import Counter
-
-tokenizer = Tokenizer(BPE())
-
-current = os.path.dirname(os.path.realpath(__file__))
-parent = os.path.dirname(current)
-sys.path.append(parent)
-
-amplitudes_file = "../../data.nosync/QED_amplitudes_TreeLevel_1to2.txt"
-sqamplitudes_file = "../../data.nosync/QED_sqamplitudes_TreeLevel_1to2_simplified_shortened_hybridprefix.txt"
-
-amplitudes = []
-with open(amplitudes_file) as f:
-    reader = csv.reader(f, delimiter=",")
-    for line in reader:
-        amplitudes.append(line)
-
-sqamplitudes = []
-with open(sqamplitudes_file) as f:
-    reader = csv.reader(f, delimiter=",")
-    for line in reader:
-        sqamplitudes.append(line)
-
-#
-ic(len(amplitudes))
-ic(len(sqamplitudes))
-# ic(amplitudes[0])
-# ic(sqamplitudes[0])
-
 
 class Tokenizer():
     """
@@ -70,16 +37,43 @@ class Tokenizer():
     def decode(self, arr):
         return [self.id2word.get(id) for id in arr]
 
-tokenizer_x = Tokenizer()
-tokenizer_x.adapt(amplitudes)
-# ic(tokenizer_x.id2word)
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
 
-tokenizer_y = Tokenizer()
-tokenizer_y.adapt(sqamplitudes)
-# ic(tokenizer_y.id2word)
+amplitudes_file = "../../data.nosync/QED_amplitudes_TreeLevel_1to2.txt"
+sqamplitudes_file = "../../data.nosync/QED_sqamplitudes_TreeLevel_1to2_simplified_shortened_hybridprefix.txt"
 
-enc0 = tokenizer_x.encode(amplitudes[0])
-ic(enc0)
-dec0 = tokenizer_x.decode(enc0)
-ic(dec0)
-assert amplitudes[0] == dec0
+if __name__=="__main__":
+    amplitudes = []
+    with open(amplitudes_file) as f:
+        reader = csv.reader(f, delimiter=",")
+        for line in reader:
+            amplitudes.append(line)
+
+    sqamplitudes = []
+    with open(sqamplitudes_file) as f:
+        reader = csv.reader(f, delimiter=",")
+        for line in reader:
+            sqamplitudes.append(line)
+
+    #
+    ic(len(amplitudes))
+    ic(len(sqamplitudes))
+    # ic(amplitudes[0])
+    # ic(sqamplitudes[0])
+
+
+    tokenizer_x = Tokenizer()
+    tokenizer_x.adapt(amplitudes)
+    # ic(tokenizer_x.id2word)
+
+    tokenizer_y = Tokenizer()
+    tokenizer_y.adapt(sqamplitudes)
+    # ic(tokenizer_y.id2word)
+
+    enc0 = tokenizer_x.encode(amplitudes[0])
+    ic(enc0)
+    dec0 = tokenizer_x.decode(enc0)
+    ic(dec0)
+    assert amplitudes[0] == dec0
