@@ -42,6 +42,7 @@ or
 ```
 I have described in [this blogpost](http://127.0.0.1:4000/machine/learning/feynman/physics/symba/2022/07/14/Introduction-Feynman-Amplitudes-Project.html)
 why.
+Always adding parentheses to each operator would make the sequences much too long for a transformer architecture for the use case of SYMBA.
 Of course one could add a separate multiplication and addition operator for each number of arguments,
 `+2 a b`, '+3 a b c', `+4 a b c d` and so on, but here I went for introducing only one extra operator
 `+(` together with a closing parenthese: "+( a b c ... )" which is used as soon as there are more than two arguments.
