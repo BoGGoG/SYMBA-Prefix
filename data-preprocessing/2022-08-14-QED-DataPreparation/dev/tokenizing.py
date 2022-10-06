@@ -1,17 +1,17 @@
-import torch
-import torch.nn as nn
-import torch.optim as optim
-import os
 import sys
-import math
+import os
+from icecream import ic 
+import csv
 import numpy as np
-import tokenizing 
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from icecream import ic
+import pandas as pd
 import csv
+from tokenizers import Tokenizer
+from tokenizers.models import BPE
 
-x_tokenizer = tokenizing.Tokenizer()
-y_tokenizer = tokenizing.Tokenizer()
+tokenizer = Tokenizer(BPE())
 
 current = os.path.dirname(os.path.realpath(__file__))
 parent = os.path.dirname(current)
@@ -32,13 +32,16 @@ with open(sqamplitudes_file) as f:
     for line in reader:
         sqamplitudes.append(line)
 
-X_train, X_test, y_train, y_test = train_test_split(amplitudes, sqamplitudes, test_size=0.2)
-x_tokenizer.adapt(X_train)
-y_tokenizer.adapt(y_train)
+#
+ic(len(amplitudes))
+ic(len(sqamplitudes))
+ic(amplitudes[0])
+ic(sqamplitudes[0])
 
-X_train_toc = [x_tokenizer.encode(x) for x in X_train]
-X_test_toc = [x_tokenizer.encode(x) for x in X_test]
-y_train_toc = [y_tokenizer.encode(y) for y in y_train]
-y_test_toc = [y_tokenizer.encode(y) for y in y_test]
+def flatten(l):
+    return [item for sublist in l for item in sublist]
 
-
+special_words = ["[START]", "[END]"]
+words = special_words + list(np.unique(flatten(amplitudes)))
+id2word = {i: s for i, s in enumerate(words)}
+ic(len(words))

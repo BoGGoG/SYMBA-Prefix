@@ -3,6 +3,8 @@ import csv
 import more_itertools
 import re
 from icecream import ic
+import ctypes as ct
+csv.field_size_limit(int(ct.c_ulong(-1).value // 2))
 
 indices_caps = [
         "A",
